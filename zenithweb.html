@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenith 🌙</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow-soft: #fffbea;
+  --yellow-light: #fff3b0;
+  --yellow-mid: #ffe066;
+  --yellow-btn: #f5c518;
+  --yellow-deep: #e6a800;
+  --gold: #c8960c;
+  --white: #ffffff;
+  --cream: #fffdf5;
+  --grey-bg: #faf8f0;
+  --grey-border: #f0e8c8;
+  --grey-text: #9a8c60;
+  --dark-text: #2d2408;
+  --card-shadow: 0 4px 24px rgba(200,150,12,0.08);
+  --card-shadow-hover: 0 8px 36px rgba(200,150,12,0.18);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --sidebar-w: 235px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--grey-bg);color:var(--dark-text);min-height:100vh;}
+
+
+/* ── LANDING ── */
+#landing-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fffdf0;position:relative;overflow:hidden;}
+#landing-screen::before{content:'';position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,#fff3b025 0%,transparent 70%);top:-200px;right:-200px;pointer-events:none;}
+#landing-screen::after{content:'';position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,#ffe06618 0%,transparent 70%);bottom:-100px;left:-100px;pointer-events:none;}
+.land-star{position:fixed;color:#f5c518;opacity:0.15;animation:twinkle 3s ease-in-out infinite;pointer-events:none;}
+.land-star:nth-child(1){top:10%;left:8%;font-size:0.7rem;animation-delay:0s;}
+.land-star:nth-child(2){top:18%;right:10%;font-size:1.1rem;animation-delay:0.8s;}
+.land-star:nth-child(3){top:60%;left:5%;font-size:0.8rem;animation-delay:1.4s;}
+.land-star:nth-child(4){bottom:25%;right:7%;font-size:0.6rem;animation-delay:0.4s;}
+.land-star:nth-child(5){top:40%;right:15%;font-size:0.5rem;animation-delay:1.8s;}
+.land-star:nth-child(6){bottom:40%;left:12%;font-size:0.9rem;animation-delay:2.2s;}
+@keyframes twinkle{0%,100%{opacity:0.15;transform:scale(1);}50%{opacity:0.35;transform:scale(1.3);}}
+.land-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:riseIn 1s cubic-bezier(0.22,1,0.36,1) both;padding:40px 20px;}
+@keyframes riseIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.land-logo-mark{width:88px;height:88px;border-radius:26px;background:linear-gradient(145deg,#ffe066,#f5c518);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(245,197,24,0.28),0 2px 8px rgba(245,197,24,0.18);margin-bottom:26px;animation:riseIn 1s 0.1s cubic-bezier(0.22,1,0.36,1) both;position:relative;}
+.land-logo-mark::after{content:'';position:absolute;inset:-3px;border-radius:29px;border:1.5px solid #ffe06640;}
+.land-moon{font-size:2.5rem;}
+.land-name{font-family:'Playfair Display',serif;font-size:4rem;font-weight:700;color:#2d2408;letter-spacing:-2px;line-height:1;margin-bottom:12px;animation:riseIn 1s 0.2s cubic-bezier(0.22,1,0.36,1) both;}
+.land-name span{background:linear-gradient(135deg,#c8960c,#f5c518);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.land-tagline{font-family:'Playfair Display',serif;font-size:1.02rem;color:#9a8c60;font-style:italic;animation:riseIn 1s 0.3s cubic-bezier(0.22,1,0.36,1) both;}
+.land-divider{width:36px;height:2px;background:linear-gradient(90deg,transparent,#f5c518,transparent);border-radius:2px;margin:20px auto;animation:riseIn 1s 0.38s cubic-bezier(0.22,1,0.36,1) both;}
+.land-sub{font-size:0.78rem;color:#b8a97a;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:36px;animation:riseIn 1s 0.44s cubic-bezier(0.22,1,0.36,1) both;}
+.land-btn{padding:14px 40px;background:linear-gradient(135deg,#f5c518,#e6a800);color:#2d2408;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.25s;letter-spacing:0.3px;box-shadow:0 4px 20px rgba(245,197,24,0.3);animation:riseIn 1s 0.54s cubic-bezier(0.22,1,0.36,1) both;}
+.land-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,197,24,0.4);background:linear-gradient(135deg,#ffe066,#f5c518);}
+.land-footer{position:fixed;bottom:0;left:0;right:0;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0e8c840;animation:riseIn 1s 0.7s cubic-bezier(0.22,1,0.36,1) both;}
+.land-footer-text{font-size:0.76rem;color:#c4b07a;font-weight:500;}
+.land-footer-text span{color:#f5c518;font-weight:700;}
+
+/* ── AUTH ── */
+#auth-screen{min-height:100vh;display:none;align-items:center;justify-content:center;background:linear-gradient(135deg,#fffbea 0%,#fff8d6 50%,#fffbea 100%);}
+.auth-box{background:white;border-radius:24px;padding:44px 40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(200,150,12,0.12);border:1.5px solid var(--grey-border);}
+.auth-logo{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--yellow-deep);text-align:center;margin-bottom:4px;}
+.auth-tagline{text-align:center;font-size:0.78rem;color:var(--grey-text);margin-bottom:28px;letter-spacing:1.2px;text-transform:uppercase;}
+.auth-tabs{display:flex;gap:6px;background:var(--grey-bg);padding:5px;border-radius:10px;margin-bottom:24px;}
+.auth-tab{flex:1;padding:9px;border:none;background:transparent;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;color:var(--grey-text);cursor:pointer;transition:all 0.2s;}
+.auth-tab.active{background:white;color:var(--yellow-deep);box-shadow:0 2px 8px rgba(200,150,12,0.12);}
+.auth-form{display:flex;flex-direction:column;gap:13px;}
+.auth-label{font-size:0.76rem;font-weight:600;color:var(--grey-text);margin-bottom:-7px;letter-spacing:0.5px;}
+.auth-input{padding:12px 16px;border:1.5px solid var(--grey-border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--dark-text);outline:none;transition:border-color 0.2s;background:var(--grey-bg);}
+.auth-input:focus{border-color:var(--yellow-mid);background:white;}
+.auth-input::placeholder{color:#ccc;}
+.btn-auth{padding:13px;background:var(--yellow-btn);color:var(--dark-text);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:4px;}
+.btn-auth:hover{background:var(--yellow-deep);color:white;transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,150,12,0.25);}
+.auth-error{font-size:0.8rem;color:#c0392b;text-align:center;display:none;background:#fdf2f0;padding:8px;border-radius:8px;}
+
+/* ── APP ── */
+#app-screen{display:none;min-height:100vh;}
+.layout{display:flex;}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);background:white;border-right:1.5px solid var(--grey-border);display:flex;flex-direction:column;padding:32px 0 24px;position:fixed;top:0;left:0;bottom:0;z-index:100;}
+.logo{padding:0 28px 26px;border-bottom:1.5px solid var(--grey-border);}
+.logo-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--yellow-deep);letter-spacing:-0.3px;}
+.logo-sub{font-size:0.68rem;color:var(--grey-text);margin-top:3px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;}
+.nav{flex:1;padding:20px 14px;display:flex;flex-direction:column;gap:3px;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:0.86rem;font-weight:500;color:var(--grey-text);transition:all 0.2s;border:1.5px solid transparent;}
+.nav-item:hover{background:var(--yellow-soft);color:var(--yellow-deep);transform:translateX(3px);}
+.nav-item.active{background:var(--yellow-soft);color:var(--yellow-deep);border-color:var(--yellow-light);}
+.nav-icon{font-size:1rem;}
+.sidebar-footer{padding:16px 22px 0;border-top:1.5px solid var(--grey-border);}
+.user-chip{display:flex;align-items:center;gap:10px;}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow-mid),var(--yellow-deep));display:flex;align-items:center;justify-content:center;font-size:0.85rem;color:white;font-weight:700;}
+.user-name{font-size:0.83rem;font-weight:600;color:var(--dark-text);}
+.user-role{font-size:0.7rem;color:var(--grey-text);}
+.logout-btn{background:none;border:none;font-size:0.75rem;color:var(--grey-text);cursor:pointer;padding:2px 0;transition:color 0.2s;margin-top:8px;display:block;}
+.logout-btn:hover{color:var(--yellow-deep);}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;padding:36px 40px;min-height:100vh;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.page-header{margin-bottom:28px;}
+.page-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--dark-text);line-height:1.2;}
+.page-sub{font-size:0.86rem;color:var(--grey-text);margin-top:4px;}
+
+/* ── SHARED ── */
+.card{background:white;border-radius:var(--radius);padding:24px;box-shadow:var(--card-shadow);border:1.5px solid var(--grey-border);transition:all 0.22s;}
+.card:hover{box-shadow:var(--card-shadow-hover);transform:translateY(-2px);}
+.card-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:16px;color:var(--dark-text);}
+.btn-yellow{padding:10px 22px;background:var(--yellow-btn);color:var(--dark-text);border:none;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+.btn-yellow:hover{background:var(--yellow-deep);color:white;transform:translateY(-1px);box-shadow:0 4px 14px rgba(200,150,12,0.25);}
+.btn-outline{padding:9px 18px;border:1.5px solid var(--yellow-btn);color:var(--yellow-deep);background:transparent;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-outline:hover{background:var(--yellow-btn);color:var(--dark-text);}
+
+/* ══ HOME ══ */
+.home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:22px;}
+.stat-card{background:white;border-radius:var(--radius);padding:22px;box-shadow:var(--card-shadow);border:1.5px solid var(--grey-border);transition:all 0.22s;}
+.stat-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover);}
+.stat-icon{font-size:1.5rem;margin-bottom:8px;}
+.stat-value{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--dark-text);line-height:1;}
+.stat-label{font-size:0.71rem;color:var(--grey-text);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;}
+.home-bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;}
+.task-mini{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--grey-border);font-size:0.83rem;}
+.task-mini:last-child{border-bottom:none;}
+.task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot-yellow{background:var(--yellow-btn);}
+.dot-grey{background:#ddd;}
+.dot-green{background:#a5d6a7;}
+.task-mini-text{flex:1;color:var(--dark-text);}
+.task-mini-tag{font-size:0.7rem;padding:2px 8px;border-radius:20px;background:var(--yellow-soft);color:var(--yellow-deep);font-weight:600;}
+.quote-home{background:linear-gradient(135deg,var(--yellow-soft),#fffef5);border:1.5px solid var(--yellow-light);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;justify-content:center;}
+.quote-mark{font-family:'Playfair Display',serif;font-size:3rem;color:var(--yellow-light);line-height:1;margin-bottom:-8px;}
+.quote-text-home{font-family:'Playfair Display',serif;font-size:0.98rem;color:var(--dark-text);line-height:1.6;font-style:italic;}
+.quote-author-home{font-size:0.75rem;color:var(--grey-text);margin-top:8px;font-weight:500;}
+
+/* ══ TASKS ══ */
+.tabs{display:flex;gap:5px;margin-bottom:22px;background:white;padding:5px;border-radius:var(--radius-sm);width:fit-content;border:1.5px solid var(--grey-border);}
+.tab-btn{padding:8px 20px;border-radius:7px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.83rem;font-weight:500;color:var(--grey-text);cursor:pointer;transition:all 0.2s;}
+.tab-btn:hover{background:var(--yellow-soft);color:var(--yellow-deep);}
+.tab-btn.active{background:var(--yellow-btn);color:var(--dark-text);font-weight:700;}
+.add-task-bar{display:flex;gap:10px;margin-bottom:18px;}
+.task-input{flex:1;padding:11px 16px;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.86rem;background:white;color:var(--dark-text);outline:none;transition:border-color 0.2s;}
+.task-input:focus{border-color:var(--yellow-mid);}
+.task-input::placeholder{color:#ccc;}
+.task-list{display:flex;flex-direction:column;gap:9px;}
+.task-item{background:white;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);padding:13px 16px;display:flex;align-items:center;gap:12px;transition:all 0.2s;}
+.task-item:hover{border-color:var(--yellow-mid);box-shadow:var(--card-shadow);transform:translateX(3px);}
+.task-check{width:20px;height:20px;border:2px solid var(--yellow-light);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;}
+.task-check:hover{border-color:var(--yellow-btn);background:var(--yellow-soft);}
+.task-check.checked{background:var(--yellow-btn);border-color:var(--yellow-btn);}
+.task-check.checked::after{content:'✓';color:var(--dark-text);font-size:0.7rem;font-weight:800;}
+.task-text{flex:1;font-size:0.86rem;color:var(--dark-text);}
+.task-text.done{text-decoration:line-through;color:var(--grey-text);}
+.task-badge{font-size:0.7rem;padding:3px 9px;border-radius:20px;font-weight:600;}
+.badge-pending{background:#fff3e0;color:#e65100;}
+.badge-progress{background:#e8f4fd;color:#1565c0;}
+.badge-done{background:#e8f5e9;color:#2e7d32;}
+.task-del{width:26px;height:26px;border:none;background:transparent;cursor:pointer;border-radius:6px;color:#ccc;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.task-del:hover{background:var(--yellow-soft);color:var(--yellow-deep);}
+
+/* ══ EXERCISE ══ */
+.ex-tabs{display:flex;gap:8px;margin-bottom:24px;}
+.ex-tab{padding:9px 22px;border-radius:20px;border:1.5px solid var(--grey-border);background:white;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;color:var(--grey-text);cursor:pointer;transition:all 0.2s;}
+.ex-tab:hover{border-color:var(--yellow-mid);color:var(--yellow-deep);}
+.ex-tab.active{background:var(--yellow-btn);border-color:var(--yellow-btn);color:var(--dark-text);font-weight:700;}
+.ex-section{display:none;}
+.ex-section.active{display:block;animation:fadeIn 0.3s ease;}
+
+/* BREATHING - redesigned */
+.breathing-wrap{max-width:600px;margin:0 auto;padding:20px;}
+.breath-top{text-align:center;margin-bottom:36px;}
+.breath-phase-title{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--dark-text);margin-bottom:6px;min-height:44px;}
+.breath-subtitle{font-size:0.82rem;color:var(--grey-text);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+
+.breath-visual{display:flex;align-items:center;justify-content:center;margin-bottom:36px;position:relative;height:200px;}
+.breath-ring-svg{position:absolute;}
+.breath-arc-bg{fill:none;stroke:var(--yellow-light);stroke-width:6;}
+.breath-arc{fill:none;stroke:var(--yellow-btn);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s linear;stroke-dasharray:502;stroke-dashoffset:0;}
+.breath-center-box{display:flex;flex-direction:column;align-items:center;justify-content:center;width:130px;height:130px;border-radius:50%;background:linear-gradient(135deg,var(--yellow-soft),#fffef0);border:2px solid var(--yellow-light);position:relative;z-index:2;}
+.breath-count-big{font-family:'Playfair Display',serif;font-size:3rem;color:var(--yellow-deep);line-height:1;font-weight:600;}
+.breath-count-label{font-size:0.7rem;color:var(--grey-text);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+
+.breath-progress-row{display:flex;justify-content:center;gap:8px;margin-bottom:32px;}
+.breath-step{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.breath-step-dot{width:10px;height:10px;border-radius:50%;background:var(--yellow-light);transition:background 0.3s;}
+.breath-step-dot.active{background:var(--yellow-btn);}
+.breath-step-label{font-size:0.68rem;color:var(--grey-text);font-weight:600;letter-spacing:0.5px;}
+
+.breath-controls-row{display:flex;justify-content:center;gap:12px;margin-bottom:16px;}
+.breath-cycles-text{text-align:center;font-size:0.8rem;color:var(--grey-text);}
+
+/* GAMES */
+.games-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.game-card{background:white;border-radius:var(--radius);padding:26px;border:1.5px solid var(--grey-border);box-shadow:var(--card-shadow);transition:all 0.22s;}
+.game-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover);}
+.game-type{font-size:0.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--yellow-deep);margin-bottom:8px;}
+.game-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--dark-text);margin-bottom:14px;}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+.mem-card{height:52px;border-radius:8px;border:1.5px solid var(--grey-border);background:var(--yellow-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all 0.2s;user-select:none;}
+.mem-card.flipped{background:white;border-color:var(--yellow-mid);}
+.mem-card.matched{background:var(--yellow-soft);border-color:var(--yellow-btn);}
+.scramble-word{font-family:'Playfair Display',serif;font-size:2rem;color:var(--yellow-deep);text-align:center;letter-spacing:8px;margin:10px 0 14px;}
+.scramble-input{width:100%;padding:10px 14px;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--dark-text);outline:none;transition:border-color 0.2s;margin-bottom:10px;}
+.scramble-input:focus{border-color:var(--yellow-mid);}
+.scramble-feedback{font-size:0.84rem;min-height:20px;text-align:center;font-weight:600;}
+.feedback-correct{color:#2e7d32;}
+.feedback-wrong{color:#c62828;}
+
+/* RIDDLES */
+.ex-question{font-family:'Playfair Display',serif;font-size:1.02rem;color:var(--dark-text);margin-bottom:16px;line-height:1.55;}
+.ex-options{display:flex;flex-direction:column;gap:8px;}
+.ex-option{padding:10px 14px;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);cursor:pointer;font-size:0.84rem;transition:all 0.2s;color:var(--dark-text);}
+.ex-option:hover:not([disabled]){border-color:var(--yellow-mid);background:var(--yellow-soft);color:var(--yellow-deep);}
+.ex-option.correct{border-color:#a5d6a7;background:#e8f5e9;color:#2e7d32;}
+.ex-option.wrong{border-color:#ffcdd2;background:#ffebee;color:#c62828;}
+
+/* ══ TIMER ══ */
+.timer-layout{display:grid;grid-template-columns:1fr 320px;gap:24px;}
+.timer-main{display:flex;flex-direction:column;align-items:center;}
+.timer-presets{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:30px;}
+.preset-btn{padding:9px 18px;border:1.5px solid var(--grey-border);border-radius:20px;background:white;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;color:var(--grey-text);cursor:pointer;transition:all 0.2s;}
+.preset-btn:hover{border-color:var(--yellow-mid);color:var(--yellow-deep);background:var(--yellow-soft);}
+.preset-btn.active{background:var(--yellow-btn);border-color:var(--yellow-btn);color:var(--dark-text);font-weight:700;}
+.timer-circle-wrap{position:relative;width:260px;height:260px;margin:0 auto 24px;}
+.timer-svg{position:absolute;top:0;left:0;transform:rotate(-90deg);}
+.timer-track{fill:none;stroke:var(--yellow-light);stroke-width:8;}
+.timer-progress{fill:none;stroke:var(--yellow-btn);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1s linear;stroke-dasharray:754;stroke-dashoffset:754;}
+.timer-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.timer-display{font-family:'Playfair Display',serif;font-size:3rem;color:var(--dark-text);line-height:1;}
+.timer-status{font-size:0.76rem;color:var(--grey-text);margin-top:6px;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+.timer-controls{display:flex;gap:12px;justify-content:center;margin-bottom:20px;}
+.custom-time{display:flex;gap:8px;align-items:center;justify-content:center;}
+.time-num-input{width:68px;padding:9px 12px;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--dark-text);outline:none;transition:border-color 0.2s;text-align:center;}
+.time-num-input:focus{border-color:var(--yellow-mid);}
+.time-sep{font-size:1.2rem;color:var(--grey-text);font-weight:600;}
+.study-log{background:white;border-radius:var(--radius);padding:24px;border:1.5px solid var(--grey-border);box-shadow:var(--card-shadow);}
+.total-studied{text-align:center;padding:18px;background:linear-gradient(135deg,var(--yellow-soft),#fffef5);border-radius:var(--radius-sm);margin-bottom:18px;border:1.5px solid var(--yellow-light);}
+.total-hrs{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--yellow-deep);}
+.total-label{font-size:0.7rem;color:var(--grey-text);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;margin-top:2px;}
+.log-entries{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;}
+.log-entry{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--grey-bg);border-radius:var(--radius-sm);border:1.5px solid var(--grey-border);}
+.log-dot{width:8px;height:8px;border-radius:50%;background:var(--yellow-btn);flex-shrink:0;}
+.log-dur{font-size:0.84rem;font-weight:600;color:var(--dark-text);}
+.log-time{font-size:0.72rem;color:var(--grey-text);}
+
+/* ══ JOURNAL ══ */
+.journal-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;}
+.journal-editor{background:white;border:1.5px solid var(--grey-border);border-radius:var(--radius);padding:28px;box-shadow:var(--card-shadow);}
+.journal-date-label{font-size:0.76rem;color:var(--grey-text);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.journal-title-input{width:100%;border:none;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--dark-text);outline:none;margin-bottom:16px;background:transparent;}
+.journal-title-input::placeholder{color:#e8d98a;}
+.journal-divider{height:1.5px;background:var(--grey-border);margin-bottom:16px;}
+.journal-body{width:100%;border:none;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--dark-text);outline:none;resize:none;height:280px;background:transparent;line-height:1.8;}
+.journal-body::placeholder{color:#e8d98a;}
+.journal-actions{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:1.5px solid var(--grey-border);align-items:center;}
+.mood-label{font-size:0.82rem;color:var(--grey-text);font-weight:500;}
+.mood-btns{display:flex;gap:6px;}
+.mood-btn{width:32px;height:32px;border:1.5px solid var(--grey-border);border-radius:50%;background:white;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.mood-btn:hover{transform:scale(1.2);border-color:var(--yellow-light);}
+.mood-btn.selected{border-color:var(--yellow-btn);background:var(--yellow-soft);}
+.save-btn{margin-left:auto;}
+.journal-sidebar{display:flex;flex-direction:column;gap:12px;max-height:calc(100vh - 180px);overflow-y:auto;}
+.past-entry{background:white;border:1.5px solid var(--grey-border);border-radius:var(--radius-sm);padding:14px 16px;cursor:pointer;transition:all 0.2s;position:relative;}
+.past-entry:hover{border-color:var(--yellow-light);background:var(--yellow-soft);}
+.entry-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;}
+.entry-date{font-size:0.7rem;color:var(--grey-text);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;}
+.entry-mood{font-size:0.88rem;}
+.entry-title{font-size:0.86rem;font-weight:600;color:var(--dark-text);margin-bottom:3px;}
+.entry-preview{font-size:0.76rem;color:var(--grey-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.entry-del-btn{position:absolute;top:10px;right:10px;width:22px;height:22px;border:none;background:transparent;cursor:pointer;border-radius:5px;color:#ccc;font-size:0.8rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;opacity:0;}
+.past-entry:hover .entry-del-btn{opacity:1;}
+.entry-del-btn:hover{background:#fdf2f0;color:#c0392b;}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--yellow-light);border-radius:10px;}
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="landing-screen">
+  <div class="land-star">✦</div>
+  <div class="land-star">✦</div>
+  <div class="land-star">✦</div>
+  <div class="land-star">✦</div>
+  <div class="land-star">✦</div>
+  <div class="land-star">✦</div>
+  <div class="land-center">
+    <!--<div class="land-logo-mark"><span class="land-moon">.</span></div>-->
+    <div class="land-name"><span>Zenith</span></div>
+    <div class="land-tagline">Reach your peak, every day.</div>
+    <div class="land-divider"></div>
+    <div class="land-sub">Students Place</div>
+    <button class="land-btn" onclick="goToAuth()">Get Started →</button>
+  </div>
+  <div class="land-footer">
+    <div class="land-footer-text">Made by <span>Snehal</span></div>
+    <div class="land-footer-text">Zenith <span>©</span> 2026</div>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-box">
+    <div class="auth-logo">Zenith 🌙</div>
+    <div class="auth-tagline">Reach your peak, every day</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuth('login')">Login</button>
+      <button class="auth-tab" onclick="switchAuth('signup')">Sign Up</button>
+    </div>
+    <div id="login-form" class="auth-form">
+      <div class="auth-label">Email</div>
+      <input class="auth-input" id="login-email" type="email" placeholder="Enter your email">
+      <div class="auth-label">Password</div>
+      <input class="auth-input" id="login-pass" type="password" placeholder="••••••••">
+      <div class="auth-error" id="login-error">Invalid email or password</div>
+      <button class="btn-auth" onclick="doLogin()">Login →</button>
+    </div>
+    <div id="signup-form" class="auth-form" style="display:none;">
+      <div class="auth-label">Your Name</div>
+      <input class="auth-input" id="signup-name" placeholder="Enter your name ">
+      <div class="auth-label">Email</div>
+      <input class="auth-input" id="signup-email" type="email" placeholder="Enter your email">
+      <div class="auth-label">Password</div>
+      <input class="auth-input" id="signup-pass" type="password" placeholder="••••••••">
+      <div class="auth-error" id="signup-error">Please fill all fields correctly</div>
+      <button class="btn-auth" onclick="doSignup()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app-screen">
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-title">Zenith 🌙</div>
+      <div class="logo-sub">Student Dashboard</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" onclick="navigate('home',this)"><span class="nav-icon">🏠</span>Home</div>
+      <div class="nav-item" onclick="navigate('tasks',this)"><span class="nav-icon">✅</span>Tasks</div>
+      <div class="nav-item" onclick="navigate('exercise',this)"><span class="nav-icon">🧠</span>Exercise</div>
+      <div class="nav-item" onclick="navigate('timer',this)"><span class="nav-icon">⏱️</span>Study Timer</div>
+      <div class="nav-item" onclick="navigate('journal',this)"><span class="nav-icon">📓</span>Journal</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="sidebar-avatar">Z</div>
+        <div>
+          <div class="user-name" id="sidebar-name">Student</div>
+          <div class="user-role">Reach your peak 🌙</div>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">← Logout</button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="page-header">
+        <div class="page-title" id="home-greeting">Good morning! 🌙</div>
+        <!--<div class="page-sub">Here's your overview for today</div>-->
+      </div>
+      <div class="home-grid">
+        <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total Tasks</div></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value" id="stat-done">0</div><div class="stat-label">Completed</div></div>
+        <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-value" id="stat-studied">0m</div><div class="stat-label">Studied Today</div></div>
+      </div>
+      <div class="home-bottom">
+        <div class="card">
+          <div class="card-title">Recent Tasks</div>
+          <div id="home-tasks"><div class="task-mini"><div class="task-dot dot-grey"></div><span class="task-mini-text">Add your first task!</span></div></div>
+        </div>
+        <div class="quote-home">
+          <div class="quote-mark">"</div>
+          <div class="quote-text-home" id="home-quote-text">The secret of getting ahead is getting started.</div>
+          <div class="quote-author-home" id="home-quote-author">— Mark Twain</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TASKS -->
+    <div class="page" id="page-tasks">
+      <div class="page-header">
+        <div class="page-title">My Tasks ✅</div>
+        <div class="page-sub">Track your study tasks</div>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('pending',this)">Pending</button>
+        <button class="tab-btn" onclick="switchTab('progress',this)">In Progress</button>
+        <button class="tab-btn" onclick="switchTab('done',this)">Done</button>
+      </div>
+      <div class="add-task-bar">
+        <input class="task-input" id="task-input" placeholder="Add a task... " onkeydown="if(event.key==='Enter')addTask()">
+        <button class="btn-yellow" onclick="addTask()">+ Add</button>
+      </div>
+      <div class="task-list" id="task-list"></div>
+    </div>
+
+    <!-- EXERCISE -->
+    <div class="page" id="page-exercise">
+      <div class="page-header">
+        <div class="page-title">Exercise & Relax 🧠</div>
+        <div class="page-sub">Breathe, play, and keep your mind sharp</div>
+      </div>
+      <div class="ex-tabs">
+        <button class="ex-tab active" onclick="switchExTab('breathing',this)">🫁 Breathing</button>
+        <button class="ex-tab" onclick="switchExTab('games',this)">🎮 Mini Games</button>
+        <button class="ex-tab" onclick="switchExTab('riddles',this)">💡 Riddles</button>
+      </div>
+
+      <!-- BREATHING -->
+      <div class="ex-section active" id="ex-breathing">
+        <div class="breathing-wrap">
+          <div class="breath-top">
+            <div class="breath-phase-title" id="breath-phase-title">Ready to breathe?</div>
+           <!-- <div class="breath-subtitle" id="breath-subtitle">Press start when you're ready</div>-->
+          </div>
+
+          <div class="breath-visual">
+            <svg class="breath-ring-svg" width="200" height="200" viewBox="0 0 200 200">
+              <circle class="breath-arc-bg" cx="100" cy="100" r="80" transform="rotate(-90 100 100)"/>
+              <circle class="breath-arc" id="breath-arc" cx="100" cy="100" r="80" transform="rotate(-90 100 100)"/>
+            </svg>
+            <div class="breath-center-box">
+              <div class="breath-count-big" id="breath-count-big">4</div>
+              <div class="breath-count-label" id="breath-count-label">seconds</div>
+            </div>
+          </div>
+
+          <div class="breath-progress-row">
+            <div class="breath-step"><div class="breath-step-dot active" id="bdot-0"></div><div class="breath-step-label">Inhale</div></div>
+            <div class="breath-step"><div class="breath-step-dot" id="bdot-1"></div><div class="breath-step-label">Hold</div></div>
+            <div class="breath-step"><div class="breath-step-dot" id="bdot-2"></div><div class="breath-step-label">Exhale</div></div>
+            <div class="breath-step"><div class="breath-step-dot" id="bdot-3"></div><div class="breath-step-label">Hold</div></div>
+          </div>
+
+          <div class="breath-controls-row">
+            <button class="btn-yellow" id="breath-btn" onclick="toggleBreathing()">Start ▶</button>
+            <button class="btn-outline" onclick="resetBreathing()">Reset</button>
+          </div>
+          <!--<div class="breath-cycles-text" id="breath-cycles">Cycles completed: 0</div>-->
+        </div>
+      </div>
+
+      <!-- GAMES -->
+      <div class="ex-section" id="ex-games">
+        <div class="games-grid">
+          <div class="game-card">
+            <div class="game-type">🃏 Memory Match</div>
+            <div class="game-title">Find the matching pairs!</div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+              <span style="font-size:0.8rem;color:var(--grey-text);">Moves: <span id="mem-moves">0</span></span>
+              <button class="btn-outline" onclick="initMemory()" style="padding:7px 14px;font-size:0.78rem;">New Game</button>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-type">🔤 Word Scramble</div>
+            <div class="game-title">Unscramble the word!</div>
+            <div class="scramble-word" id="scramble-display">?????</div>
+            <input class="scramble-input" id="scramble-input" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')checkScramble()">
+            <div class="scramble-feedback" id="scramble-feedback"></div>
+            <div style="display:flex;gap:8px;margin-top:10px;">
+              <button class="btn-yellow" onclick="checkScramble()" style="flex:1;">Check</button>
+              <button class="btn-outline" onclick="newScramble()">Skip</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIDDLES -->
+      <div class="ex-section" id="ex-riddles">
+        <div class="games-grid">
+          <div class="game-card">
+            <div class="game-type">🔢 Math Riddle</div>
+            <div class="ex-question">If you have 3 apples and take away 2, how many apples do YOU have?</div>
+            <div class="ex-options">
+              <div class="ex-option" onclick="checkAnswer(this,false)">1</div>
+              <div class="ex-option" onclick="checkAnswer(this,true)">2</div>
+              <div class="ex-option" onclick="checkAnswer(this,false)">3</div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-type">🔤 Word Riddle</div>
+            <div class="ex-question">I speak without a mouth and hear without ears. I have no body, but come alive with wind. What am I?</div>
+            <div class="ex-options">
+              <div class="ex-option" onclick="checkAnswer(this,false)">A shadow</div>
+              <div class="ex-option" onclick="checkAnswer(this,true)">An echo</div>
+              <div class="ex-option" onclick="checkAnswer(this,false)">A whisper</div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-type">💡 Logic</div>
+            <div class="ex-question">A rooster lays an egg on top of a barn. Which way does it roll?</div>
+            <div class="ex-options">
+              <div class="ex-option" onclick="checkAnswer(this,false)">Left</div>
+              <div class="ex-option" onclick="checkAnswer(this,false)">Right</div>
+              <div class="ex-option" onclick="checkAnswer(this,true)">Roosters don't lay eggs!</div>
+            </div>
+          </div>
+          <div class="game-card">
+            <div class="game-type">🧩 Tricky</div>
+            <div class="ex-question">The more you take, the more you leave behind. What am I?</div>
+            <div class="ex-options">
+              <div class="ex-option" onclick="checkAnswer(this,false)">Time</div>
+              <div class="ex-option" onclick="checkAnswer(this,true)">Footsteps</div>
+              <div class="ex-option" onclick="checkAnswer(this,false)">Memories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMER -->
+    <div class="page" id="page-timer">
+      <div class="page-header">
+        <div class="page-title">Study Timer ⏱️</div>
+        <div class="page-sub">Focus sessions and your study log</div>
+      </div>
+      <div class="timer-layout">
+        <div class="card timer-main">
+          <div class="card-title" style="text-align:center;margin-bottom:20px;">Set Your Focus Session</div>
+          <div class="timer-presets">
+            <button class="preset-btn" onclick="setPreset(15,this)">15 min</button>
+            <button class="preset-btn active" onclick="setPreset(25,this)">25 min</button>
+            <button class="preset-btn" onclick="setPreset(30,this)">30 min</button>
+            <button class="preset-btn" onclick="setPreset(45,this)">45 min</button>
+            <button class="preset-btn" onclick="setPreset(60,this)">1 hr</button>
+          </div>
+          <div class="timer-circle-wrap">
+            <svg class="timer-svg" width="260" height="260" viewBox="0 0 260 260">
+              <circle class="timer-track" cx="130" cy="130" r="120"/>
+              <circle class="timer-progress" id="timer-ring" cx="130" cy="130" r="120"/>
+            </svg>
+            <div class="timer-inner">
+              <div class="timer-display" id="timer-display">25:00</div>
+              <div class="timer-status" id="timer-status">Ready</div>
+            </div>
+          </div>
+          <div class="timer-controls">
+            <button class="btn-yellow" id="timer-btn" onclick="toggleTimer()">Start ▶</button>
+            <button class="btn-outline" onclick="resetTimer()">Reset</button>
+          </div>
+          <div style="margin-top:20px;padding-top:18px;border-top:1.5px solid var(--grey-border);text-align:center;">
+            <div style="font-size:0.76rem;color:var(--grey-text);margin-bottom:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;">Custom Time</div>
+            <div class="custom-time">
+              <input class="time-num-input" id="custom-mins" type="number" min="1" max="180" value="25">
+              <span class="time-sep">:</span>
+              <input class="time-num-input" id="custom-secs" type="number" min="0" max="59" value="00">
+              <button class="btn-yellow" onclick="setCustomTime()" style="padding:9px 16px;">Set</button>
+            </div>
+          </div>
+        </div>
+        <div class="study-log">
+          <div class="card-title">Study Log 📊</div>
+          <div class="total-studied">
+            <div class="total-hrs" id="total-studied-display">0m</div>
+            <div class="total-label">Total Studied Today</div>
+          </div>
+          <div style="font-size:0.76rem;color:var(--grey-text);font-weight:600;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:10px;">Recent Sessions</div>
+          <div class="log-entries" id="log-entries">
+            <div style="text-align:center;color:var(--grey-text);font-size:0.84rem;padding:20px;">No sessions yet 🌙</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNAL -->
+    <div class="page" id="page-journal">
+      <div class="page-header">
+        <div class="page-title">My Journal 📓</div>
+        <div class="page-sub">Your personal space to reflect and write</div>
+      </div>
+      <div class="journal-layout">
+        <div class="journal-editor">
+          <div class="journal-date-label" id="journal-date"></div>
+          <input class="journal-title-input" id="journal-title" placeholder="Give your entry a title...">
+          <div class="journal-divider"></div>
+          <textarea class="journal-body" id="journal-body" placeholder="What's on your mind today? Write freely — this is just for you..."></textarea>
+          <div class="journal-actions">
+            <span class="mood-label">Mood:</span>
+            <div class="mood-btns">
+              <button class="mood-btn" onclick="selectMood(this)">😊</button>
+              <button class="mood-btn" onclick="selectMood(this)">😐</button>
+              <button class="mood-btn" onclick="selectMood(this)">😔</button>
+              <button class="mood-btn" onclick="selectMood(this)">😤</button>
+              <button class="mood-btn" onclick="selectMood(this)">🤩</button>
+            </div>
+            <button class="btn-yellow save-btn" onclick="saveEntry()">Save Entry</button>
+          </div>
+        </div>
+        <div class="journal-sidebar" id="journal-entries">
+          <div style="font-family:'Playfair Display',serif;font-size:0.92rem;color:var(--grey-text);padding:16px;text-align:center;">Your saved entries will appear here 🌙</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<script>
+
+// ══ LANDING ══
+function goToAuth(){
+  document.getElementById('landing-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+}
+
+// ══ AUTH ══
+let users=JSON.parse(localStorage.getItem('z_users')||'[]');
+let currentUser=JSON.parse(localStorage.getItem('z_current')||'null');
+
+function switchAuth(mode){
+  document.querySelectorAll('.auth-tab').forEach((t,i)=>t.classList.toggle('active',(mode==='login'&&i===0)||(mode==='signup'&&i===1)));
+  document.getElementById('login-form').style.display=mode==='login'?'flex':'none';
+  document.getElementById('signup-form').style.display=mode==='signup'?'flex':'none';
+}
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value;
+  const user=users.find(u=>u.email===email&&u.pass===pass);
+  if(!user){document.getElementById('login-error').style.display='block';return;}
+  document.getElementById('login-error').style.display='none';
+  currentUser=user;localStorage.setItem('z_current',JSON.stringify(user));launchApp();
+}
+function doSignup(){
+  const name=document.getElementById('signup-name').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
+  const pass=document.getElementById('signup-pass').value;
+  if(!name||!email||pass.length<6){document.getElementById('signup-error').style.display='block';return;}
+  if(users.find(u=>u.email===email)){document.getElementById('signup-error').textContent='Email already exists';document.getElementById('signup-error').style.display='block';return;}
+  document.getElementById('signup-error').style.display='none';
+  const user={name,email,pass};users.push(user);
+  localStorage.setItem('z_users',JSON.stringify(users));
+  currentUser=user;localStorage.setItem('z_current',JSON.stringify(user));launchApp();
+}
+function doLogout(){
+  localStorage.removeItem('z_current');currentUser=null;
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+}
+function launchApp(){
+  document.getElementById('landing-screen').style.display='none';
+  document.getElementById('auth-screen').style.display='none';
+  document.getElementById('app-screen').style.display='block';
+  document.getElementById('sidebar-name').textContent=currentUser.name;
+  document.getElementById('sidebar-avatar').textContent=currentUser.name[0].toUpperCase();
+  const h=new Date().getHours();
+  const g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  document.getElementById('home-greeting').textContent=`${g}, ${currentUser.name}! 🌙`;
+  setDailyQuote();renderTasks();updateHomeStats();
+  initMemory();newScramble();
+  document.getElementById('journal-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  renderEntries();updateTimerDisplay();updateRing();
+}
+if(currentUser)setTimeout(launchApp,10);
+
+// ══ NAV ══
+function navigate(page,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  el.classList.add('active');
+  if(page==='home')updateHomeStats();
+}
+
+// ══ TASKS ══
+let tasks=[],currentTab='pending';
+function addTask(){
+  const i=document.getElementById('task-input');
+  const t=i.value.trim();if(!t)return;
+  tasks.push({id:Date.now(),text:t,status:'pending'});i.value='';
+  renderTasks();updateHomeStats();
+}
+function switchTab(tab,el){
+  currentTab=tab;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');renderTasks();
+}
+function renderTasks(){
+  const list=document.getElementById('task-list');
+  const filtered=tasks.filter(t=>t.status===currentTab);
+  if(!filtered.length){list.innerHTML=`<div style="text-align:center;padding:40px;color:var(--grey-text);font-size:0.88rem;">No tasks here 🌙</div>`;return;}
+  list.innerHTML=filtered.map(t=>`
+    <div class="task-item">
+      <div class="task-check ${t.status==='done'?'checked':''}" onclick="toggleTask(${t.id})"></div>
+      <span class="task-text ${t.status==='done'?'done':''}">${t.text}</span>
+      <span class="task-badge badge-${t.status}">${t.status==='progress'?'In Progress':t.status[0].toUpperCase()+t.status.slice(1)}</span>
+      ${t.status==='pending'?`<button class="task-del" onclick="moveTask(${t.id},'progress')" title="Start">▶</button>`:''}
+      <button class="task-del" onclick="deleteTask(${t.id})">✕</button>
+    </div>`).join('');
+}
+function toggleTask(id){const t=tasks.find(t=>t.id===id);if(!t)return;t.status=t.status==='done'?'pending':'done';renderTasks();updateHomeStats();}
+function moveTask(id,s){const t=tasks.find(t=>t.id===id);if(t){t.status=s;renderTasks();updateHomeStats();}}
+function deleteTask(id){tasks=tasks.filter(t=>t.id!==id);renderTasks();updateHomeStats();}
+function updateHomeStats(){
+  document.getElementById('stat-total').textContent=tasks.length;
+  document.getElementById('stat-done').textContent=tasks.filter(t=>t.status==='done').length;
+  const recent=tasks.slice(-4);
+  document.getElementById('home-tasks').innerHTML=recent.length
+    ?recent.map(t=>`<div class="task-mini"><div class="task-dot ${t.status==='done'?'dot-green':t.status==='progress'?'dot-yellow':'dot-grey'}"></div><span class="task-mini-text">${t.text}</span><span class="task-mini-tag">${t.status==='progress'?'In Progress':t.status[0].toUpperCase()+t.status.slice(1)}</span></div>`).join('')
+    :`<div class="task-mini"><div class="task-dot dot-grey"></div><span class="task-mini-text">Add your first task!</span></div>`;
+}
+
+// ══ QUOTES ══
+const quotes=[
+  {text:"The secret of getting ahead is getting started.",author:"Mark Twain"},
+  {text:"It always seems impossible until it's done.",author:"Nelson Mandela"},
+  {text:"Don't watch the clock; do what it does. Keep going.",author:"Sam Levenson"},
+  {text:"The beautiful thing about learning is that no one can take it away.",author:"B.B. King"},
+  {text:"Success is the sum of small efforts repeated day in and day out.",author:"Robert Collier"},
+  {text:"You don't have to be great to start, but you have to start to be great.",author:"Zig Ziglar"},
+  {text:"Believe you can and you're halfway there.",author:"Theodore Roosevelt"},
+  {text:"Do something today that your future self will thank you for.",author:"Sean Patrick Flanery"},
+  {text:"Dream bigger. Do bigger.",author:"Unknown"},
+  {text:"Wake up with determination. Go to bed with satisfaction.",author:"Unknown"},
+  {text:"Don't stop until you're proud.",author:"Unknown"},
+  {text:"Push yourself, because no one else is going to do it for you.",author:"Unknown"},
+  {text:"Little things make big days.",author:"Unknown"},
+  {text:"It's going to be hard, but hard does not mean impossible.",author:"Unknown"},
+];
+function setDailyQuote(){
+  const q=quotes[Math.floor(Date.now()/86400000)%quotes.length];
+  document.getElementById('home-quote-text').textContent=q.text;
+  document.getElementById('home-quote-author').textContent='— '+q.author;
+}
+
+// ══ EXERCISE TABS ══
+function switchExTab(tab,el){
+  document.querySelectorAll('.ex-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ex-section').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('ex-'+tab).classList.add('active');
+}
+
+// ══ BREATHING ══
+const breathPhases=[
+  {name:'Inhale',label:'Breathe in slowly...',dur:4},
+  {name:'Hold',label:'Hold your breath...',dur:4},
+  {name:'Exhale',label:'Breathe out slowly...',dur:6},
+  {name:'Hold',label:'Hold before next cycle...',dur:2},
+];
+const arcCircumference=2*Math.PI*80;
+let bRunning=false,bPhaseIdx=0,bCount=4,bCycles=0,bTimer=null;
+
+function updateBreathArc(fraction){
+  const offset=arcCircumference*(1-fraction);
+  document.getElementById('breath-arc').style.strokeDashoffset=offset;
+  document.getElementById('breath-arc').style.strokeDasharray=arcCircumference;
+}
+function toggleBreathing(){
+  if(bRunning){
+    clearTimeout(bTimer);bRunning=false;
+    document.getElementById('breath-btn').textContent='Resume ▶';
+    document.getElementById('breath-subtitle').textContent='Paused';
+  } else {
+    bRunning=true;
+    document.getElementById('breath-btn').textContent='Pause ⏸';
+    runBreathPhase();
+  }
+}
+function runBreathPhase(){
+  if(!bRunning)return;
+  const p=breathPhases[bPhaseIdx];
+  document.querySelectorAll('.breath-step-dot').forEach((d,i)=>d.classList.toggle('active',i===bPhaseIdx));
+  document.getElementById('breath-phase-title').textContent=p.name;
+  document.getElementById('breath-subtitle').textContent=p.label;
+  bCount=p.dur;
+  document.getElementById('breath-count-big').textContent=bCount;
+  updateBreathArc(1);
+  const tick=()=>{
+    bCount--;
+    document.getElementById('breath-count-big').textContent=Math.max(0,bCount);
+    updateBreathArc(bCount/p.dur);
+    if(bCount>0&&bRunning){bTimer=setTimeout(tick,1000);}
+    else if(bRunning){
+      bPhaseIdx=(bPhaseIdx+1)%breathPhases.length;
+      if(bPhaseIdx===0){bCycles++;document.getElementById('breath-cycles').textContent='Cycles completed: '+bCycles;}
+      bTimer=setTimeout(runBreathPhase,200);
+    }
+  };
+  bTimer=setTimeout(tick,1000);
+}
+function resetBreathing(){
+  clearTimeout(bTimer);bRunning=false;bPhaseIdx=0;bCount=4;bCycles=0;
+  document.getElementById('breath-btn').textContent='Start ▶';
+  document.getElementById('breath-phase-title').textContent='Ready to breathe?';
+  document.getElementById('breath-subtitle').textContent='Press start when you\'re ready';
+  document.getElementById('breath-count-big').textContent='4';
+  document.getElementById('breath-cycles').textContent='Cycles completed: 0';
+  document.querySelectorAll('.breath-step-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
+  updateBreathArc(1);
+}
+
+// ══ MEMORY GAME ══
+const emojis=['🌙','⭐','🌻','🦋','🍋','🎯','🌈','💛'];
+let memCards=[],memFlipped=[],memMatched=[],memMoves=0,memLock=false;
+function initMemory(){
+  const pairs=[...emojis,...emojis].sort(()=>Math.random()-0.5);
+  memCards=pairs;memFlipped=[];memMatched=[];memMoves=0;memLock=false;
+  document.getElementById('mem-moves').textContent=0;
+  document.getElementById('memory-grid').innerHTML=pairs.map((e,i)=>`<div class="mem-card" id="mc-${i}" onclick="flipCard(${i})">🌙</div>`).join('');
+}
+function flipCard(i){
+  if(memLock||memFlipped.includes(i)||memMatched.includes(i))return;
+  const el=document.getElementById('mc-'+i);
+  el.textContent=memCards[i];el.classList.add('flipped');
+  memFlipped.push(i);
+  if(memFlipped.length===2){
+    memMoves++;document.getElementById('mem-moves').textContent=memMoves;memLock=true;
+    const[a,b]=memFlipped;
+    if(memCards[a]===memCards[b]){
+      memMatched.push(a,b);
+      document.getElementById('mc-'+a).classList.add('matched');
+      document.getElementById('mc-'+b).classList.add('matched');
+      memFlipped=[];memLock=false;
+      if(memMatched.length===memCards.length)setTimeout(()=>alert('🎉 You matched all pairs in '+memMoves+' moves!'),200);
+    } else {
+      setTimeout(()=>{
+        document.getElementById('mc-'+a).textContent='🌙';document.getElementById('mc-'+a).classList.remove('flipped');
+        document.getElementById('mc-'+b).textContent='🌙';document.getElementById('mc-'+b).classList.remove('flipped');
+        memFlipped=[];memLock=false;
+      },900);
+    }
+  }
+}
+
+// ══ WORD SCRAMBLE ══
+const wordList=[{word:'STUDY',hint:'What students do'},{word:'FOCUS',hint:'Concentrate'},{word:'LEARN',hint:'Gain knowledge'},{word:'ZENITH',hint:'Highest point'},{word:'THINK',hint:'Use your brain'},{word:'NOTES',hint:'Written reminders'},{word:'SMART',hint:'Clever and wise'},{word:'GOALS',hint:'Things you aim for'},{word:'BRAIN',hint:'Thinking organ'},{word:'PEACE',hint:'Calm state of mind'}];
+let currentWord='';
+function newScramble(){
+  const w=wordList[Math.floor(Math.random()*wordList.length)];
+  currentWord=w.word;
+  let s=w.word.split('');
+  while(s.join('')===w.word)s.sort(()=>Math.random()-0.5);
+  document.getElementById('scramble-display').textContent=s.join(' ');
+  document.getElementById('scramble-input').value='';
+  document.getElementById('scramble-feedback').textContent='Hint: '+w.hint;
+  document.getElementById('scramble-feedback').className='scramble-feedback';
+}
+function checkScramble(){
+  const ans=document.getElementById('scramble-input').value.trim().toUpperCase();
+  const fb=document.getElementById('scramble-feedback');
+  if(ans===currentWord){fb.textContent='🎉 Correct!';fb.className='scramble-feedback feedback-correct';setTimeout(newScramble,1400);}
+  else{fb.textContent='Not quite, try again!';fb.className='scramble-feedback feedback-wrong';}
+}
+function checkAnswer(el,correct){
+  el.parentElement.querySelectorAll('.ex-option').forEach(o=>{o.setAttribute('disabled','');o.onclick=null;});
+  el.classList.add(correct?'correct':'wrong');
+}
+
+// ══ TIMER ══
+let timerTotal=25*60,timerLeft=25*60,timerRunning=false,timerInterval=null;
+let studyLog=[],totalStudiedSecs=0;
+const timerCircumference=2*Math.PI*120;
+
+function setPreset(mins,el){
+  if(timerRunning)return;
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  timerTotal=mins*60;timerLeft=mins*60;updateTimerDisplay();updateRing();
+}
+function setCustomTime(){
+  if(timerRunning)return;
+  const m=parseInt(document.getElementById('custom-mins').value)||0;
+  const s=parseInt(document.getElementById('custom-secs').value)||0;
+  timerTotal=m*60+s;timerLeft=timerTotal;
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  updateTimerDisplay();updateRing();
+}
+function toggleTimer(){
+  if(timerLeft===0)return;
+  timerRunning=!timerRunning;
+  document.getElementById('timer-btn').textContent=timerRunning?'Pause ⏸':'Resume ▶';
+  document.getElementById('timer-status').textContent=timerRunning?'Focusing...':'Paused';
+  if(timerRunning)timerInterval=setInterval(tickTimer,1000);
+  else clearInterval(timerInterval);
+}
+function tickTimer(){
+  timerLeft--;updateTimerDisplay();updateRing();
+  if(timerLeft<=0){
+    clearInterval(timerInterval);timerRunning=false;
+    totalStudiedSecs+=timerTotal;
+    addLogEntry(timerTotal);
+    document.getElementById('timer-btn').textContent='Start ▶';
+    document.getElementById('timer-status').textContent='Done! 🎉';
+    document.getElementById('stat-studied').textContent=formatHM(totalStudiedSecs);
+    updateTotalDisplay();
+  }
+}
+function resetTimer(){
+  clearInterval(timerInterval);timerRunning=false;timerLeft=timerTotal;
+  document.getElementById('timer-btn').textContent='Start ▶';
+  document.getElementById('timer-status').textContent='Ready';
+  updateTimerDisplay();updateRing();
+}
+function updateTimerDisplay(){
+  const m=Math.floor(timerLeft/60),s=timerLeft%60;
+  document.getElementById('timer-display').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+function updateRing(){
+  const p=timerLeft/timerTotal;
+  document.getElementById('timer-ring').style.strokeDashoffset=timerCircumference*(1-p);
+  document.getElementById('timer-ring').style.strokeDasharray=timerCircumference;
+}
+function formatHM(secs){
+  const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60);
+  return h>0?`${h}h ${m}m`:`${m}m`;
+}
+function addLogEntry(secs){
+  const now=new Date();
+  studyLog.unshift({time:now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}),dur:formatHM(secs)});
+  renderLog();
+}
+function renderLog(){
+  const el=document.getElementById('log-entries');
+  if(!studyLog.length){el.innerHTML=`<div style="text-align:center;color:var(--grey-text);font-size:0.84rem;padding:20px;">No sessions yet 🌙</div>`;return;}
+  el.innerHTML=studyLog.slice(0,10).map(e=>`<div class="log-entry"><div class="log-dot"></div><div style="flex:1;"><div class="log-dur">${e.dur}</div><div class="log-time">${e.time}</div></div></div>`).join('');
+}
+function updateTotalDisplay(){
+  document.getElementById('total-studied-display').textContent=formatHM(totalStudiedSecs)||'0m';
+}
+
+// ══ JOURNAL ══
+let savedEntries=[],selectedMood='';
+function selectMood(btn){document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedMood=btn.textContent;}
+function saveEntry(){
+  const title=document.getElementById('journal-title').value.trim();
+  const body=document.getElementById('journal-body').value.trim();
+  if(!title&&!body)return;
+  savedEntries.unshift({id:Date.now(),date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),title:title||'Untitled Entry',preview:body.slice(0,55)+(body.length>55?'...':''),mood:selectedMood||'😊'});
+  document.getElementById('journal-title').value='';
+  document.getElementById('journal-body').value='';
+  selectedMood='';
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+  renderEntries();
+}
+function deleteEntry(id,e){
+  e.stopPropagation();
+  savedEntries=savedEntries.filter(en=>en.id!==id);
+  renderEntries();
+}
+function renderEntries(){
+  const c=document.getElementById('journal-entries');
+  if(!savedEntries.length){c.innerHTML=`<div style="font-family:'Playfair Display',serif;font-size:0.92rem;color:var(--grey-text);padding:16px;text-align:center;">Your saved entries will appear here 🌙</div>`;return;}
+  c.innerHTML=savedEntries.map(e=>`
+    <div class="past-entry">
+      <button class="entry-del-btn" onclick="deleteEntry(${e.id},event)" title="Delete">✕</button>
+      <div class="entry-header">
+        <div class="entry-date">${e.date}</div>
+        <span class="entry-mood">${e.mood}</span>
+      </div>
+      <div class="entry-title">${e.title}</div>
+      <div class="entry-preview">${e.preview||'No content'}</div>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>
